@@ -83,7 +83,7 @@ def parse_distribution(obj: object | dict, where: str) -> Distribution:
         distribution_sum += prob
         distribution[k] = prob
 
-    if distribution_sum != 1:
+    if distribution_sum != Fraction(1):
         raise InputError(f"sum of {where} should be equal to 1, got {distribution_sum}")
 
     return distribution
@@ -95,6 +95,6 @@ def switch_to_symbols(
     result: Distribution = {}
 
     for c in alphabet:
-        result[c] = sum(weights[m] * components[m].get(c, 0) for m in weights)
+        result[c] = sum(weights[m] * components[m].get(c, Fraction(0)) for m in weights)
 
     return result
