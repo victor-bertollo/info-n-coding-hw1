@@ -1,9 +1,50 @@
+from dataclasses import dataclass
 from fractions import Fraction
+import math
+import random
 
 from errors import InputError
 
 
 type Distribution = dict[str, Fraction]
+
+
+@dataclass(frozen=True)
+class Sampler:
+    symbols: tuple[str, ...]
+    cumulative: tuple[int, ...]
+    denom: int
+
+    @classmethod
+    def from_distribution(cls, distribution: Distribution) -> "Sampler":
+        symbols = tuple(sorted(distribution.keys()))
+        cumulative: list[int] = []
+        denom = 1
+
+        for f in distribution.values():
+            denom = math.lcm(denom, f.denominator)
+
+        c = 0
+
+        for s in symbols:
+            c += int(distribution[s] * denom)
+            cumulative.append(c)
+
+        return cls(symbols=symbols, cumulative=tuple(cumulative), denom=denom)
+
+    def sample(self, rng: random.Random) -> str:
+        n = rng.randrange(self.denom)
+        l, r = 0, len(self.cumulative)
+
+        while l < r:
+            m = (l + r) // 2
+
+            if self.cumulative[m] <= n:
+                l = m + 1
+            else:
+                r = m
+
+        return self.symbols[l]
 
 
 def parse_prob(text: object | str, where: str) -> Fraction:

@@ -1,8 +1,9 @@
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 from fractions import Fraction
+import random
 
-from probs import Distribution, switch_to_symbols
+from probs import Distribution, Sampler, switch_to_symbols
 from source_format import SourceDescription
 
 
@@ -10,6 +11,7 @@ from source_format import SourceDescription
 class PeriodicSource:
     alphabet: tuple[str, ...]
     positions: tuple[Distribution, ...]
+    samplers: tuple[Sampler, ...]
 
     @classmethod
     def from_description(cls, desc: SourceDescription) -> "PeriodicSource":
@@ -26,7 +28,8 @@ class PeriodicSource:
             components = desc.models
             positions.append(switch_to_symbols(weights, components, alphabet))
 
-        return cls(alphabet=alphabet, positions=tuple(positions))
+        samplers: tuple[Sampler] = tuple(Sampler.from_distribution(d) for d in positions)
+        return cls(alphabet=alphabet, positions=tuple(positions), samplers=samplers)
 
     @property
     def period(self) -> int:
@@ -45,6 +48,14 @@ class PeriodicSource:
             prob *= self.dist_at(start + i)[s]
 
         return prob
+
+    def generate(self, rng: random.Random) -> Iterator[str]:
+        i = 0
+
+        while True:
+            sampler = self.samplers[i]
+            i = (i + 1) % self.period
+            yield sampler.sample(rng)
 
 
 def period_average(source: PeriodicSource, block: Sequence[str]) -> Fraction:
