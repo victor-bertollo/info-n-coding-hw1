@@ -6,7 +6,9 @@ from fractions import Fraction
 from itertools import islice
 
 from errors import InputError
-from source import PeriodicSource, period_average
+# Begin OpenAI Codex changes: shared source loader; see SOURCES.md.
+from source import Source, period_average, source_from_description
+# End OpenAI Codex changes.
 from source_format import load_description
 from task11 import frequency_table
 from variant import Variant
@@ -35,15 +37,16 @@ def positive_int(text: str) -> int:
     return value
 
 
-def load_source(path: str) -> PeriodicSource:
-    return PeriodicSource.from_description(load_description(path))
+# Begin OpenAI Codex changes: loading all source types and shared type annotations.
+def load_source(path: str) -> Source:
+    return source_from_description(load_description(path))
 
 
-def single_char_alphabet(source: PeriodicSource) -> bool:
+def single_char_alphabet(source: Source) -> bool:
     return all(len(a) == 1 for a in source.alphabet)
 
 
-def parse_block(source: PeriodicSource, words: list[str]) -> tuple[str, ...]:
+def parse_block(source: Source, words: list[str]) -> tuple[str, ...]:
     if single_char_alphabet(source):
         block = tuple("".join(words))
     else:
@@ -54,6 +57,7 @@ def parse_block(source: PeriodicSource, words: list[str]) -> tuple[str, ...]:
     if unknown:
         raise InputError(f"symbols {unknown} are not in source alphabet {list(source.alphabet)}")
     return block
+# End OpenAI Codex changes.
 
 
 def fmt(p: Fraction) -> str:
