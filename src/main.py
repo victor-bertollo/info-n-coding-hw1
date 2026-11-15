@@ -1,4 +1,3 @@
-# весь файл сгенерирован Claude (Anthropic), см. SOURCES.md
 import argparse
 import os
 import random

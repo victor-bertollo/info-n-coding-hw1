@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
-# весь файл сгенерирован Claude (Anthropic), см. SOURCES.md
-# Прогоняет тесты и пишет вывод программы в RESULTS.md.
-# Запуск из корня репозитория: bash tests/run_tests.sh
-# Интерпретатор можно переопределить: PYTHON=python3 bash tests/run_tests.sh
 
 cd "$(dirname "$0")/.." || exit 1
-# интерпретатор берётся из окружения uv один раз и дальше вызывается напрямую:
-# через "uv run" сигнал SIGINT получил бы uv, а не программа
 PY=${PYTHON:-$(uv run --quiet python -c 'import sys; print(sys.executable)')} || exit 1
 OUT=RESULTS.md
 T=tests/task11
