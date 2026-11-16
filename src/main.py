@@ -1,3 +1,4 @@
+# Begin Claude generated CLI, with student and OpenAI Codex changes; see SOURCES.md.
 import argparse
 import os
 import random
@@ -88,6 +89,7 @@ def cmd_generate(args: argparse.Namespace) -> int:
     return 0
 
 
+# Begin OpenAI Codex assisted changes: generalized probability output.
 def cmd_prob(args: argparse.Namespace) -> int:
     source = load_source(args.source)
     block = parse_block(source, args.block)
@@ -119,6 +121,8 @@ def cmd_prob(args: argparse.Namespace) -> int:
         print(f"{n:>9}  {float(row.freq):>10.6f}  {float(row.diff_first):>10.6f}  {float(row.diff_average):>10.6f}")
     return 0
 
+
+# End OpenAI Codex assisted changes.
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="main.py", description="HW1: source coding")
@@ -167,6 +171,12 @@ def main(argv: list[str] | None = None) -> int:
     except InputError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
+    except UnicodeEncodeError:
+        print(
+            "error: source symbols cannot be encoded for output",
+            file=sys.stderr,
+        )
+        return 2
     except KeyboardInterrupt:
         sys.stdout.write("\n")
         return 130
@@ -178,3 +188,5 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+# End Claude generated CLI.

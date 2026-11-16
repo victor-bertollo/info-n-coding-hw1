@@ -1,0 +1,15 @@
+{
+  "type": "markov",
+  "depth": 1,
+  "alphabet": [
+    "a\tb"
+  ],
+  "initial": {
+    "a\tb": "1"
+  },
+  "transitions": {
+    "a\tb": {
+      "a\tb": "1"
+    }
+  }
+}

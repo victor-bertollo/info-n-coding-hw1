@@ -44,7 +44,7 @@ cbaeccaaaaccceeabcdcbebeabbaedebecbacbdecaecdcdbbbccaedbacedcecbccebccabcbeeaaac
 ```
 $ main.py task11 generate tests/task11/variant.json None --seed 3    # SIGINT (Ctrl+C) через 1 с
 первые 80 символов: cccaccddcaeadbccbddccdcdabdadceadeaaecaceaebceeceecceeecacaaacbcecedbcdcecceccbc
-всего выведено байт: 2625422
+всего выведено байт: 3299158
 [exit code: 130]
 ```
 
@@ -53,7 +53,7 @@ $ main.py task11 generate tests/task11/variant.json None --seed 3    # SIGINT (C
 ```
 $ main.py task11 generate tests/task11/variant.json 0 --seed 3    # SIGINT (Ctrl+C) через 1 с
 первые 80 символов: cccaccddcaeadbccbddccdcdabdadceadeaaecaceaebceeceecceeecacaaacbcecedbcdcecceccbc
-всего выведено байт: 2889698
+всего выведено байт: 3384067
 [exit code: 130]
 ```
 
@@ -71,10 +71,10 @@ $ main.py task11 generate tests/task11/example2.json 40 --seed 3
 
 ```
 $ main.py task11 prob tests/task11/variant.json 1000 e --seed 3
-source: tests/task11/variant.json (L = 6, alphabet: a b c d e)
+source: tests/task11/variant.json (alphabet: a b c d e)
 block: e (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 4313/13600 ≈ 0.317132
-(2) period average:       6091/27200 ≈ 0.223934
+(2) long-run average:     6091/27200 ≈ 0.223934
 (3) frequency, N = 1000: 113/500 ≈ 0.226000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -90,10 +90,10 @@ block: e (r = 1), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/variant.json 1000 c --seed 3
-source: tests/task11/variant.json (L = 6, alphabet: a b c d e)
+source: tests/task11/variant.json (alphabet: a b c d e)
 block: c (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 3827/13600 ≈ 0.281397
-(2) period average:       8889/27200 ≈ 0.326801
+(2) long-run average:     8889/27200 ≈ 0.326801
 (3) frequency, N = 1000: 33/100 ≈ 0.330000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -109,10 +109,10 @@ block: c (r = 1), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/variant.json 1000 c a e --seed 3
-source: tests/task11/variant.json (L = 6, alphabet: a b c d e)
+source: tests/task11/variant.json (alphabet: a b c d e)
 block: cae (r = 3), seed = 3
 (1) Pr{X_1..X_r = block}: 574972307/62886400000 ≈ 0.009143
-(2) period average:       12766567099/754636800000 ≈ 0.016917
+(2) long-run average:     12766567099/754636800000 ≈ 0.016917
 (3) frequency, N = 1000: 9/499 ≈ 0.018036
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -128,10 +128,10 @@ block: cae (r = 3), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/example2.json 1000 0 0 --seed 3
-source: tests/task11/example2.json (L = 4, alphabet: 0 1)
+source: tests/task11/example2.json (alphabet: 0 1)
 block: 00 (r = 2), seed = 3
 (1) Pr{X_1..X_r = block}: 17/60 ≈ 0.283333
-(2) period average:       527/1800 ≈ 0.292778
+(2) long-run average:     527/1800 ≈ 0.292778
 (3) frequency, N = 1000: 272/999 ≈ 0.272272
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -149,10 +149,10 @@ block: 00 (r = 2), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/degenerate/one_symbol.json 100 x x
-source: tests/task11/degenerate/one_symbol.json (L = 1, alphabet: x)
+source: tests/task11/degenerate/one_symbol.json (alphabet: x)
 block: xx (r = 2), seed = 0
 (1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
-(2) period average:       1 ≈ 1.000000
+(2) long-run average:     1 ≈ 1.000000
 (3) frequency, N = 100: 1 ≈ 1.000000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -168,10 +168,10 @@ block: xx (r = 2), seed = 0
 
 ```
 $ main.py task11 prob tests/task11/degenerate/length_one.json 1000 e --seed 3
-source: tests/task11/degenerate/length_one.json (L = 1, alphabet: a b c d e)
+source: tests/task11/degenerate/length_one.json (alphabet: a b c d e)
 block: e (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 4313/13600 ≈ 0.317132
-(2) period average:       4313/13600 ≈ 0.317132
+(2) long-run average:     4313/13600 ≈ 0.317132
 (3) frequency, N = 1000: 161/500 ≈ 0.322000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -195,10 +195,10 @@ caceaaecaceceaaceaaaacacecceeaeaaceaccceeceacacaeaaccaaccaea
 
 ```
 $ main.py task11 prob tests/task11/degenerate/zero_probs.json 1000 b --seed 3
-source: tests/task11/degenerate/zero_probs.json (L = 6, alphabet: a b c d e)
+source: tests/task11/degenerate/zero_probs.json (alphabet: a b c d e)
 block: b (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 0 ≈ 0.000000
-(2) period average:       0 ≈ 0.000000
+(2) long-run average:     0 ≈ 0.000000
 (3) frequency, N = 1000: 0 ≈ 0.000000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -222,10 +222,10 @@ $ main.py task11 generate tests/task11/degenerate/words.json 10 --seed 3
 
 ```
 $ main.py task11 prob tests/task11/degenerate/words.json 1000 орёл орёл --seed 3
-source: tests/task11/degenerate/words.json (L = 2, alphabet: орёл решка)
+source: tests/task11/degenerate/words.json (alphabet: орёл решка)
 block: орёл орёл (r = 2), seed = 3
 (1) Pr{X_1..X_r = block}: 9/20 ≈ 0.450000
-(2) period average:       9/20 ≈ 0.450000
+(2) long-run average:     9/20 ≈ 0.450000
 (3) frequency, N = 1000: 421/999 ≈ 0.421421
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -241,10 +241,10 @@ block: орёл орёл (r = 2), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/degenerate/mixed_notation.json 1000 a --seed 3
-source: tests/task11/degenerate/mixed_notation.json (L = 6, alphabet: a b c d e)
+source: tests/task11/degenerate/mixed_notation.json (alphabet: a b c d e)
 block: a (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 29/136 ≈ 0.213235
-(2) period average:       29/136 ≈ 0.213235
+(2) long-run average:     29/136 ≈ 0.213235
 (3) frequency, N = 1000: 9/40 ≈ 0.225000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -260,10 +260,10 @@ block: a (r = 1), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/variant.json 1 a --seed 3
-source: tests/task11/variant.json (L = 6, alphabet: a b c d e)
+source: tests/task11/variant.json (alphabet: a b c d e)
 block: a (r = 1), seed = 3
 (1) Pr{X_1..X_r = block}: 273/1360 ≈ 0.200735
-(2) period average:       611/2720 ≈ 0.224632
+(2) long-run average:     611/2720 ≈ 0.224632
 (3) frequency, N = 1: 0 ≈ 0.000000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -279,10 +279,10 @@ block: a (r = 1), seed = 3
 
 ```
 $ main.py task11 prob tests/task11/variant.json 3 c a e --seed 3
-source: tests/task11/variant.json (L = 6, alphabet: a b c d e)
+source: tests/task11/variant.json (alphabet: a b c d e)
 block: cae (r = 3), seed = 3
 (1) Pr{X_1..X_r = block}: 574972307/62886400000 ≈ 0.009143
-(2) period average:       12766567099/754636800000 ≈ 0.016917
+(2) long-run average:     12766567099/754636800000 ≈ 0.016917
 (3) frequency, N = 3: 0 ≈ 0.000000
 
         N   frequency   |f - (1)|   |f - (2)|
@@ -320,11 +320,91 @@ error: failed to parse models['model1']['a'] as fraction
 [exit code: 2]
 ```
 
+#### markov_depth.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_depth.json 10
+error: "depth" must be an integer greater than 0
+[exit code: 2]
+```
+
+#### markov_duplicate.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_duplicate.json 10
+error: "alphabet" symbol must be unique non-empty string without spaces
+[exit code: 2]
+```
+
+#### markov_initial.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_initial.json 10
+error: z context doesn't exist
+[exit code: 2]
+```
+
+#### markov_missing_context.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_missing_context.json 10
+error: b context doesn't exist
+[exit code: 2]
+```
+
+#### markov_normalization.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_normalization.json 10
+error: sum of transitions['a'] should be equal to 1, got 1/2
+[exit code: 2]
+```
+
+#### markov_transition_symbol.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_transition_symbol.json 10
+error: alphabet doesn't have z symbol
+[exit code: 2]
+```
+
+#### markov_whitespace.json
+
+```
+$ main.py task11 generate tests/task11/invalid/markov_whitespace.json 10
+error: "alphabet" symbol must be unique non-empty string without spaces
+[exit code: 2]
+```
+
 #### missing_field.json
 
 ```
 $ main.py task11 generate tests/task11/invalid/missing_field.json 10
-error: data has no key switches
+error: data must have key switches
+[exit code: 2]
+```
+
+#### mixture_empty.json
+
+```
+$ main.py task11 generate tests/task11/invalid/mixture_empty.json 10
+error: "components" must be non-empty list
+[exit code: 2]
+```
+
+#### mixture_negative.json
+
+```
+$ main.py task11 generate tests/task11/invalid/mixture_negative.json 10
+error: components[0]["weight] can't be less than 0
+[exit code: 2]
+```
+
+#### mixture_weights.json
+
+```
+$ main.py task11 generate tests/task11/invalid/mixture_weights.json 10
+error: sum of components' weights should be equal to 1, got 1/2
 [exit code: 2]
 ```
 
@@ -397,6 +477,14 @@ error: model3 model doesn't exist
 ```
 $ main.py task11 generate tests/task11/invalid/unknown_switch.json 10
 error: s3 switch doesn't exist
+[exit code: 2]
+```
+
+#### unknown_type.json
+
+```
+$ main.py task11 generate tests/task11/invalid/unknown_type.json 10
+error: incorrect description type
 [exit code: 2]
 ```
 
@@ -496,3 +584,558 @@ main.py task11: error: the following arguments are required: mode
 [exit code: 2]
 ```
 
+### Расширенный формат
+#### markov, generate
+
+```
+$ main.py task11 generate tests/task11/markov.json 30 --seed 3
+abcdeabcdeabcdeabcdeabcdeabcde
+[exit code: 0]
+```
+
+#### markov, prob(a)
+
+```
+$ main.py task11 prob tests/task11/markov.json 1000 a --seed 3
+source: tests/task11/markov.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
+(2) long-run average:     1/5 ≈ 0.200000
+(3) frequency, N = 1000: 1/5 ≈ 0.200000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.200000    0.800000    0.000000
+     1000    0.200000    0.800000    0.000000
+    10000    0.200000    0.800000    0.000000
+   100000    0.200000    0.800000    0.000000
+  1000000    0.200000    0.800000    0.000000
+[exit code: 0]
+```
+
+#### markov_stationary, generate
+
+```
+$ main.py task11 generate tests/task11/markov_stationary.json 30 --seed 3
+bcdeabcdeabcdeabcdeabcdeabcdea
+[exit code: 0]
+```
+
+#### markov_stationary, prob(a)
+
+```
+$ main.py task11 prob tests/task11/markov_stationary.json 1000 a --seed 3
+source: tests/task11/markov_stationary.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 1/5 ≈ 0.200000
+(2) long-run average:     1/5 ≈ 0.200000
+(3) frequency, N = 1000: 1/5 ≈ 0.200000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.200000    0.000000    0.000000
+     1000    0.200000    0.000000    0.000000
+    10000    0.200000    0.000000    0.000000
+   100000    0.200000    0.000000    0.000000
+  1000000    0.200000    0.000000    0.000000
+[exit code: 0]
+```
+
+#### markov_absorption, generate
+
+```
+$ main.py task11 generate tests/task11/markov_absorption.json 30 --seed 3
+adedededededededededededededed
+[exit code: 0]
+```
+
+#### markov_absorption, prob(a)
+
+```
+$ main.py task11 prob tests/task11/markov_absorption.json 1000 a --seed 3
+source: tests/task11/markov_absorption.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
+(2) long-run average:     0 ≈ 0.000000
+(3) frequency, N = 1000: 1/1000 ≈ 0.001000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.010000    0.990000    0.010000
+     1000    0.001000    0.999000    0.001000
+    10000    0.000100    0.999900    0.000100
+   100000    0.000010    0.999990    0.000010
+  1000000    0.000001    0.999999    0.000001
+[exit code: 0]
+```
+
+#### mixture, generate
+
+```
+$ main.py task11 generate tests/task11/mixture.json 30 --seed 3
+aceaaebaaeedaaadaaaababedddeac
+[exit code: 0]
+```
+
+#### mixture, prob(a)
+
+```
+$ main.py task11 prob tests/task11/mixture.json 1000 a --seed 3
+source: tests/task11/mixture.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 3/8 ≈ 0.375000
+(2) long-run average:     3/8 ≈ 0.375000
+(3) frequency, N = 1000: 249/500 ≈ 0.498000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.440000    0.065000    0.065000
+     1000    0.498000    0.123000    0.123000
+    10000    0.491000    0.116000    0.116000
+   100000    0.500600    0.125600    0.125600
+  1000000    0.499943    0.124943    0.124943
+[exit code: 0]
+```
+
+#### mixture_nested, generate
+
+```
+$ main.py task11 generate tests/task11/mixture_nested.json 30 --seed 3
+ceaaebaaeedaaadaaaababedddeaca
+[exit code: 0]
+```
+
+#### mixture_nested, prob(a)
+
+```
+$ main.py task11 prob tests/task11/mixture_nested.json 1000 a --seed 3
+source: tests/task11/mixture_nested.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 31/120 ≈ 0.258333
+(2) long-run average:     31/120 ≈ 0.258333
+(3) frequency, N = 1000: 497/1000 ≈ 0.497000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.430000    0.171667    0.171667
+     1000    0.497000    0.238667    0.238667
+    10000    0.490900    0.232567    0.232567
+   100000    0.500590    0.242257    0.242257
+  1000000    0.499943    0.241610    0.241610
+[exit code: 0]
+```
+
+#### stationary, generate
+
+```
+$ main.py task11 generate tests/task11/stationary.json 30 --seed 3
+aaceaaebaaeedaaadaaaababedddea
+[exit code: 0]
+```
+
+#### stationary, prob(a)
+
+```
+$ main.py task11 prob tests/task11/stationary.json 1000 a --seed 3
+source: tests/task11/stationary.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 1/2 ≈ 0.500000
+(2) long-run average:     1/2 ≈ 0.500000
+(3) frequency, N = 1000: 249/500 ≈ 0.498000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.450000    0.050000    0.050000
+     1000    0.498000    0.002000    0.002000
+    10000    0.491100    0.008900    0.008900
+   100000    0.500610    0.000610    0.000610
+  1000000    0.499943    0.000057    0.000057
+[exit code: 0]
+```
+
+#### markov, block ab
+
+```
+$ main.py task11 prob tests/task11/markov.json 1000 a b --seed 3
+source: tests/task11/markov.json (alphabet: a b c d e)
+block: ab (r = 2), seed = 3
+(1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
+(2) long-run average:     1/5 ≈ 0.200000
+(3) frequency, N = 1000: 200/999 ≈ 0.200200
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.202020    0.797980    0.002020
+     1000    0.200200    0.799800    0.000200
+    10000    0.200020    0.799980    0.000020
+   100000    0.200002    0.799998    0.000002
+  1000000    0.200000    0.800000    0.000000
+[exit code: 0]
+```
+
+#### absorption, block bc
+
+```
+$ main.py task11 prob tests/task11/markov_absorption.json 1000 b c --seed 3
+source: tests/task11/markov_absorption.json (alphabet: a b c d e)
+block: bc (r = 2), seed = 3
+(1) Pr{X_1..X_r = block}: 0 ≈ 0.000000
+(2) long-run average:     1/6 ≈ 0.166667
+(3) frequency, N = 1000: 0 ≈ 0.000000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.000000    0.000000    0.166667
+     1000    0.000000    0.000000    0.166667
+    10000    0.000000    0.000000    0.166667
+   100000    0.000000    0.000000    0.166667
+  1000000    0.000000    0.000000    0.166667
+[exit code: 0]
+```
+
+#### absorption, block de
+
+```
+$ main.py task11 prob tests/task11/markov_absorption.json 1000 d e --seed 3
+source: tests/task11/markov_absorption.json (alphabet: a b c d e)
+block: de (r = 2), seed = 3
+(1) Pr{X_1..X_r = block}: 0 ≈ 0.000000
+(2) long-run average:     1/3 ≈ 0.333333
+(3) frequency, N = 1000: 499/999 ≈ 0.499499
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.494949    0.494949    0.161616
+     1000    0.499499    0.499499    0.166166
+    10000    0.499950    0.499950    0.166617
+   100000    0.499995    0.499995    0.166662
+  1000000    0.499999    0.499999    0.166666
+[exit code: 0]
+```
+
+#### mixture, another component
+
+```
+$ main.py task11 prob tests/task11/mixture.json 1000 a --seed 0
+source: tests/task11/mixture.json (alphabet: a b c d e)
+block: a (r = 1), seed = 0
+(1) Pr{X_1..X_r = block}: 3/8 ≈ 0.375000
+(2) long-run average:     3/8 ≈ 0.375000
+(3) frequency, N = 1000: 67/250 ≈ 0.268000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.260000    0.115000    0.115000
+     1000    0.268000    0.107000    0.107000
+    10000    0.250000    0.125000    0.125000
+   100000    0.250010    0.124990    0.124990
+  1000000    0.250246    0.124754    0.124754
+[exit code: 0]
+```
+
+#### markov_depth2, generate
+
+```
+$ main.py task11 generate tests/task11/degenerate/markov_depth2.json 30 --seed 3
+ababababababababababababababab
+[exit code: 0]
+```
+
+#### markov_single, generate
+
+```
+$ main.py task11 generate tests/task11/degenerate/markov_single.json 30 --seed 3
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+[exit code: 0]
+```
+
+#### mixture_zero_weight, generate
+
+```
+$ main.py task11 generate tests/task11/degenerate/mixture_zero_weight.json 30 --seed 3
+bdeaaeccbeedbcbdaabacacededebd
+[exit code: 0]
+```
+
+#### depth two, block ab
+
+```
+$ main.py task11 prob tests/task11/degenerate/markov_depth2.json 1000 a b --seed 3
+source: tests/task11/degenerate/markov_depth2.json (alphabet: a b)
+block: ab (r = 2), seed = 3
+(1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
+(2) long-run average:     1/2 ≈ 0.500000
+(3) frequency, N = 1000: 500/999 ≈ 0.500501
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.505051    0.494949    0.005051
+     1000    0.500501    0.499499    0.000501
+    10000    0.500050    0.499950    0.000050
+   100000    0.500005    0.499995    0.000005
+  1000000    0.500001    0.499999    0.000001
+[exit code: 0]
+```
+
+#### single-state Markov
+
+```
+$ main.py task11 prob tests/task11/degenerate/markov_single.json 100 x x --seed 3
+source: tests/task11/degenerate/markov_single.json (alphabet: x)
+block: xx (r = 2), seed = 3
+(1) Pr{X_1..X_r = block}: 1 ≈ 1.000000
+(2) long-run average:     1 ≈ 1.000000
+(3) frequency, N = 100: 1 ≈ 1.000000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    1.000000    0.000000    0.000000
+     1000    1.000000    0.000000    0.000000
+    10000    1.000000    0.000000    0.000000
+   100000    1.000000    0.000000    0.000000
+  1000000    1.000000    0.000000    0.000000
+[exit code: 0]
+```
+
+#### zero mixture weight
+
+```
+$ main.py task11 prob tests/task11/degenerate/mixture_zero_weight.json 1000 a --seed 3
+source: tests/task11/degenerate/mixture_zero_weight.json (alphabet: a b c d e)
+block: a (r = 1), seed = 3
+(1) Pr{X_1..X_r = block}: 1/4 ≈ 0.250000
+(2) long-run average:     1/4 ≈ 0.250000
+(3) frequency, N = 1000: 33/125 ≈ 0.264000
+
+        N   frequency   |f - (1)|   |f - (2)|
+      100    0.250000    0.000000    0.000000
+     1000    0.264000    0.014000    0.014000
+    10000    0.245400    0.004600    0.004600
+   100000    0.251290    0.001290    0.001290
+  1000000    0.249450    0.000550    0.000550
+[exit code: 0]
+```
+
+#### negative N
+
+```
+$ main.py task11 generate tests/task11/markov.json -1 --seed 3    # SIGINT (Ctrl+C) через 1 с
+первые 80 символов: abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde
+всего выведено байт: 3121730
+[exit code: 130]
+```
+
+#### empty_model.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/empty_model.json 10 a
+error: models['model1'] must be non-empty dict
+[exit code: 2]
+```
+
+#### empty_source.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/empty_source.json 10 a
+error: "source" must be non-empty list
+[exit code: 2]
+```
+
+#### garbage_prob.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/garbage_prob.json 10 a
+error: failed to parse models['model1']['a'] as fraction
+[exit code: 2]
+```
+
+#### markov_depth.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_depth.json 10 a
+error: "depth" must be an integer greater than 0
+[exit code: 2]
+```
+
+#### markov_duplicate.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_duplicate.json 10 a
+error: "alphabet" symbol must be unique non-empty string without spaces
+[exit code: 2]
+```
+
+#### markov_initial.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_initial.json 10 a
+error: z context doesn't exist
+[exit code: 2]
+```
+
+#### markov_missing_context.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_missing_context.json 10 a
+error: b context doesn't exist
+[exit code: 2]
+```
+
+#### markov_normalization.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_normalization.json 10 a
+error: sum of transitions['a'] should be equal to 1, got 1/2
+[exit code: 2]
+```
+
+#### markov_transition_symbol.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_transition_symbol.json 10 a
+error: alphabet doesn't have z symbol
+[exit code: 2]
+```
+
+#### markov_whitespace.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/markov_whitespace.json 10 a
+error: "alphabet" symbol must be unique non-empty string without spaces
+[exit code: 2]
+```
+
+#### missing_field.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/missing_field.json 10 a
+error: data must have key switches
+[exit code: 2]
+```
+
+#### mixture_empty.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/mixture_empty.json 10 a
+error: "components" must be non-empty list
+[exit code: 2]
+```
+
+#### mixture_negative.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/mixture_negative.json 10 a
+error: components[0]["weight] can't be less than 0
+[exit code: 2]
+```
+
+#### mixture_weights.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/mixture_weights.json 10 a
+error: sum of components' weights should be equal to 1, got 1/2
+[exit code: 2]
+```
+
+#### negative.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/negative.json 10 a
+error: models['model1']['a'] can't be less than 0
+[exit code: 2]
+```
+
+#### not_normalized.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/not_normalized.json 10 a
+error: sum of models['model1'] should be equal to 1, got 9/8
+[exit code: 2]
+```
+
+#### not_utf8.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/not_utf8.json 10 a
+error: file tests/task11/invalid/not_utf8.json not in UTF-8
+[exit code: 2]
+```
+
+#### number_prob.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/number_prob.json 10 a
+error: models['model1']['a'] must be str object
+[exit code: 2]
+```
+
+#### root_list.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/root_list.json 10 a
+error: data is not a dict
+[exit code: 2]
+```
+
+#### source_not_list.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/source_not_list.json 10 a
+error: "source" must be non-empty list
+[exit code: 2]
+```
+
+#### truncated.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/truncated.json 10 a
+error: file tests/task11/invalid/truncated.json content is not a valid json
+[exit code: 2]
+```
+
+#### unknown_model.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/unknown_model.json 10 a
+error: model3 model doesn't exist
+[exit code: 2]
+```
+
+#### unknown_switch.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/unknown_switch.json 10 a
+error: s3 switch doesn't exist
+[exit code: 2]
+```
+
+#### unknown_type.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/unknown_type.json 10 a
+error: incorrect description type
+[exit code: 2]
+```
+
+#### zero_denominator.json, prob
+
+```
+$ main.py task11 prob tests/task11/invalid/zero_denominator.json 10 a
+error: failed to parse models['model1']['a'] as fraction
+[exit code: 2]
+```
+
+### Проверки математических свойств и CLI
+```
+$ python -m unittest discover -s tests -p test_*.py -v
+test_invalid_files_in_both_modes (test_task11.CliTests.test_invalid_files_in_both_modes) ... ok
+test_oversized_json_integer (test_task11.CliTests.test_oversized_json_integer) ... ok
+test_prob_all_source_types (test_task11.CliTests.test_prob_all_source_types) ... ok
+test_reproducibility_and_length (test_task11.CliTests.test_reproducibility_and_length) ... ok
+test_absorption_and_initial_distribution (test_task11.MathematicsTests.test_absorption_and_initial_distribution) ... ok
+test_component_is_chosen_once (test_task11.MathematicsTests.test_component_is_chosen_once) ... ok
+test_depth_two_boundary (test_task11.MathematicsTests.test_depth_two_boundary) ... ok
+test_exact_enumeration (test_task11.MathematicsTests.test_exact_enumeration) ... ok
+test_markov_cycle (test_task11.MathematicsTests.test_markov_cycle) ... ok
+test_mixture_probabilities (test_task11.MathematicsTests.test_mixture_probabilities) ... ok
+test_overlapping_windows (test_task11.MathematicsTests.test_overlapping_windows) ... ok
+test_periodic_reference (test_task11.MathematicsTests.test_periodic_reference) ... ok
+test_solver (test_task11.MathematicsTests.test_solver) ... ok
+test_stationary_cycle (test_task11.MathematicsTests.test_stationary_cycle) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 4.530s
+
+OK
+[exit code: 0]
+```
+
+Unexpected failures: 0

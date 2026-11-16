@@ -46,6 +46,10 @@ def load_description(path: str) -> Description:
         raise InputError(f"file {path} not in UTF-8") from exc
     except json.JSONDecodeError as exc:
         raise InputError(f"file {path} content is not a valid json") from exc
+    # Begin OpenAI Codex changes: JSON integer conversion diagnostics.
+    except ValueError as exc:
+        raise InputError(f"invalid value in source {path}: {exc}") from exc
+    # End OpenAI Codex changes.
     except RecursionError as exc:
         raise InputError(f"source {path} contains recursion error") from exc
 

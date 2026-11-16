@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
+# Begin Claude generated code, adapted by OpenAI Codex; see SOURCES.md.
 
 cd "$(dirname "$0")/.." || exit 1
 PY=${PYTHON:-$(uv run --quiet python -c 'import sys; print(sys.executable)')} || exit 1
 OUT=RESULTS.md
 T=tests/task11
+# Begin OpenAI Codex changes: validate expected exit codes.
+failures=0
+EXPECTED_CODE=0
+# End OpenAI Codex changes.
 
 run() {
     local title=$1
@@ -13,8 +18,15 @@ run() {
         echo
         echo '```'
         echo "\$ main.py $*"
-        $PY src/main.py "$@" 2>&1
-        echo "[exit code: $?]"
+        # Begin OpenAI Codex changes: detect failed test runs.
+        "$PY" src/main.py "$@" 2>&1
+        local code=$?
+        echo "[exit code: $code]"
+        if [ "$code" -ne "$EXPECTED_CODE" ]; then
+            echo "FAIL: expected exit code $EXPECTED_CODE"
+            failures=$((failures + 1))
+        fi
+        # End OpenAI Codex changes.
         echo '```'
         echo
     } >> "$OUT"
@@ -28,6 +40,11 @@ run_interrupted() {
     # запуск не через "&": фоновые процессы неинтерактивного bash игнорируют SIGINT
     timeout --preserve-status -s INT 1 $PY src/main.py "$@" > "$tmp" 2>&1
     local code=$?
+    # Begin OpenAI Codex changes: validate interrupt handling.
+    if [ "$code" -ne 130 ]; then
+        failures=$((failures + 1))
+    fi
+    # End OpenAI Codex changes.
     {
         echo "#### $title"
         echo
@@ -82,6 +99,7 @@ run "дроби и десятичная запись вперемешку, пр�
 run "N = 1, блок длины 1" task11 prob $T/variant.json 1 a --seed 3
 run "N = r: ровно одно окно" task11 prob $T/variant.json 3 c a e --seed 3
 
+EXPECTED_CODE=2
 echo "### Некорректные входы: файл описания" >> "$OUT"
 echo >> "$OUT"
 for f in $T/invalid/*.json; do
@@ -101,4 +119,45 @@ run "режим 2, нет блока" task11 prob $T/variant.json 100
 run "seed не число" task11 generate $T/variant.json 10 --seed abc
 run "нет режима" task11
 
-echo "готово: $OUT"
+# Begin OpenAI Codex changes: extended source tests and mathematical checks.
+EXPECTED_CODE=0
+echo '### Расширенный формат' >> "$OUT"
+for f in markov markov_stationary markov_absorption mixture mixture_nested stationary; do
+    run "$f, generate" task11 generate "$T/$f.json" 30 --seed 3
+    run "$f, prob(a)" task11 prob "$T/$f.json" 1000 a --seed 3
+done
+run "markov, block ab" task11 prob "$T/markov.json" 1000 a b --seed 3
+run "absorption, block bc" task11 prob "$T/markov_absorption.json" 1000 b c --seed 3
+run "absorption, block de" task11 prob "$T/markov_absorption.json" 1000 d e --seed 3
+run "mixture, another component" task11 prob "$T/mixture.json" 1000 a --seed 0
+for f in markov_depth2 markov_single mixture_zero_weight; do
+    run "$f, generate" task11 generate "$T/degenerate/$f.json" 30 --seed 3
+done
+run "depth two, block ab" task11 prob "$T/degenerate/markov_depth2.json" 1000 a b --seed 3
+run "single-state Markov" task11 prob "$T/degenerate/markov_single.json" 100 x x --seed 3
+run "zero mixture weight" task11 prob "$T/degenerate/mixture_zero_weight.json" 1000 a --seed 3
+run_interrupted "negative N" task11 generate "$T/markov.json" -1 --seed 3
+EXPECTED_CODE=2
+for f in "$T"/invalid/*.json; do
+    run "$(basename "$f"), prob" task11 prob "$f" 10 a
+done
+{
+    echo '### Проверки математических свойств и CLI'
+    echo '```'
+    echo '$ python -m unittest discover -s tests -p test_*.py -v'
+    "$PY" -m unittest discover -s tests -p 'test_*.py' -v 2>&1
+    code=$?
+    echo "[exit code: $code]"
+    if [ "$code" -ne 0 ]; then
+        failures=$((failures + 1))
+    fi
+    echo '```'
+    echo
+    echo "Unexpected failures: $failures"
+} >> "$OUT"
+echo "готово: $OUT; неожиданных ошибок: $failures"
+if [ "$failures" -ne 0 ]; then
+    exit 1
+fi
+# End OpenAI Codex changes.
+# End Claude generated code, adapted by OpenAI Codex.
