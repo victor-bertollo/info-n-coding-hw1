@@ -154,7 +154,7 @@ def _parse_alphabet(obj: object | list) -> tuple[str, ...]:
     seen: set[str] = set()
 
     for v in obj:
-        if not isinstance(v, str) or not v or " " in v or v in seen:
+        if not isinstance(v, str) or not v or any(c.isspace() for c in v) or v in seen:
             raise InputError('"alphabet" symbol must be unique non-empty string without spaces')
 
         seen.add(v)
