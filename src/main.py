@@ -7,7 +7,7 @@ from itertools import islice
 
 from errors import InputError
 # Begin OpenAI Codex changes: shared source loader; see SOURCES.md.
-from source import Source, period_average, source_from_description
+from source import Source, average_block_prob, source_from_description
 # End OpenAI Codex changes.
 from source_format import load_description
 from task11 import frequency_table
@@ -95,15 +95,17 @@ def cmd_prob(args: argparse.Namespace) -> int:
     if r > args.n:
         raise InputError(f"block length r = {r} exceeds N = {args.n}")
 
+    p_first = source.block_prob(block, 1)
+    p_avg = average_block_prob(source, block)
     table_sizes = [n for n in TABLE_SIZES if n >= r]
     sizes = sorted(set(table_sizes) | {args.n})
-    rows = {row.n: row for row in frequency_table(source, block, random.Random(args.seed), sizes)}
+    rows = {row.n: row for row in frequency_table(source, p_first, p_avg, block, random.Random(args.seed), sizes)}
     sep = "" if single_char_alphabet(source) else " "
 
-    print(f"source: {args.source} (L = {source.period}, alphabet: {' '.join(source.alphabet)})")
+    print(f"source: {args.source} (alphabet: {' '.join(source.alphabet)})")
     print(f"block: {sep.join(block)} (r = {r}), seed = {args.seed}")
-    print(f"(1) Pr{{X_1..X_r = block}}: {fmt(source.block_prob(block, 1))}")
-    print(f"(2) period average:       {fmt(period_average(source, block))}")
+    print(f"(1) Pr{{X_1..X_r = block}}: {fmt(p_first)}")
+    print(f"(2) long-run average:     {fmt(p_avg)}")
     print(f"(3) frequency, N = {args.n}: {fmt(rows[args.n].freq)}")
     print()
     if not table_sizes:

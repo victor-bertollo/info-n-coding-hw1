@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 import random
 
-from source import PeriodicSource, period_average
+from source import Source
 
 
 @dataclass(frozen=True)
@@ -41,10 +41,8 @@ def count_matches(
 
 
 def frequency_table(
-    source: PeriodicSource, block: Sequence[str], rng: random.Random, sizes: Sequence[int]
+    source: Source, p_first: Fraction, p_avg: Fraction, block: Sequence[str], rng: random.Random, sizes: Sequence[int]
 ) -> list[Frequency]:
-    p_first = source.block_prob(block, 1)
-    p_avg = period_average(source, block)
     matches = count_matches(source.generate(rng), block, sizes)
     block_len = len(block)
     frequencies: list[Frequency] = []
